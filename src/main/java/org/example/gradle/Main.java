@@ -5,10 +5,7 @@ import org.w3c.dom.*;
 import javax.xml.parsers.*;
 import java.io.*;
 import java.util.*;
-import java.util.stream.Stream;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) throws Exception {
         FileWriter writer1 = null;
@@ -49,9 +46,7 @@ public class Main {
 
     public static void writeAttributes(Document document, FileWriter writer, String tagName) throws Exception {
         NodeList nodeList = document.getElementsByTagName(tagName);
-        List<String> connectors = new ArrayList<>();
-        List<String> instances = new ArrayList<>();
-        List<String> groups = new ArrayList<>();
+        List<String> combinedList = new ArrayList<>();
 
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
@@ -90,7 +85,7 @@ public class Main {
                                 fromInstanceOrder = 6;
                                 break;
                         }
-                        connectors.add(fromInstanceOrder + ":connector:fromInstance=" + fromInstance +
+                        combinedList.add(fromInstanceOrder + ":connector:fromInstance=" + fromInstance +
                                 ", fromField=" + fromField + ", toInstance=" + toInstance + ", toField=" + toField);
                         break;
                     case "INSTANCE": {
@@ -111,7 +106,7 @@ public class Main {
                                 typeOrder = 4;
                                 break;
                         }
-                        instances.add(typeOrder + ":instance:Name=" + name + ", type=" + type);
+                        combinedList.add(typeOrder + ":instance:Name=" + name + ", type=" + type);
                         break;
                     }
                     case "GROUP": {
@@ -119,7 +114,7 @@ public class Main {
                         String expression = element.getAttribute("EXPRESSION");
                         String order = element.getAttribute("ORDER");
                         String type = element.getAttribute("TYPE");
-                        groups.add(order + ":group:name=" + name + ", expression=" + expression + ", order=" + order + ", type=" + type);
+                        combinedList.add(order + ":group:name=" + name + ", expression=" + expression + ", order=" + order + ", type=" + type);
                         break;
                     }
                     default:
@@ -128,7 +123,7 @@ public class Main {
                 }
                 }
             }
-        Stream.concat(Stream.concat(connectors.stream(), instances.stream()), groups.stream())
+        combinedList.stream()
                 .sorted(Comparator.comparing(s -> Integer.parseInt(s.split(":")[0])))
                 .forEach(group -> {
                     try {
@@ -137,7 +132,9 @@ public class Main {
                         throw new RuntimeException(e);
                     }
                 });
-        }
+
+
+    }
 
     }
 
