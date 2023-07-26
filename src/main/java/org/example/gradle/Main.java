@@ -48,6 +48,7 @@ public class Main {
 
     public static void writeAttributes(Document document, FileWriter writer, String tagName) throws Exception {
         NodeList nodeList = document.getElementsByTagName(tagName);
+        List<String> connectors = new ArrayList<>();
         List<String> instances = new ArrayList<>();
         List<String> groups = new ArrayList<>();
 
@@ -67,8 +68,29 @@ public class Main {
                         String fromField = element.getAttribute("FROMFIELD");
                         String toInstance = element.getAttribute("TOINSTANCE");
                         String toField = element.getAttribute("TOFIELD");
-                        writer.write(":connector:fromInstance=" + fromInstance +
-                                ", fromField=" + fromField + ", toInstance=" + toInstance + ", toField=" + toField + "\n");
+                        int fromInstanceOrder;
+                        switch (fromInstance) {
+                            case "EMPLOYEES":
+                                fromInstanceOrder = 1;
+                                break;
+                            case "SQ_EMPLOYEES":
+                                fromInstanceOrder = 2;
+                                break;
+                            case "EMPLOYEE_ID_FILTER":
+                                fromInstanceOrder = 3;
+                                break;
+                            case "EXP_EMPLOYEE":
+                                fromInstanceOrder = 4;
+                                break;
+                            case "trans_ROUTER_EMPLOYEES_BY_JOB_ID":
+                                fromInstanceOrder = 5;
+                                break;
+                            default:
+                                fromInstanceOrder = 6;
+                                break;
+                        }
+                        connectors.add(fromInstanceOrder + ":connector:fromInstance=" + fromInstance +
+                                ", fromField=" + fromField + ", toInstance=" + toInstance + ", toField=" + toField);
                         break;
                     case "INSTANCE": {
                         String name = element.getAttribute("NAME");
@@ -105,6 +127,10 @@ public class Main {
                 }
                 }
             }
+        connectors.sort(Comparator.comparing(s -> Integer.parseInt(s.split(":")[0])));
+        for (String connector : connectors) {
+            writer.write(connector.substring(connector.indexOf(":") + 1) + "\n");
+        }
         instances.sort(Comparator.comparing(s -> Integer.parseInt(s.split(":")[0])));
         for (String instance : instances) {
             writer.write(instance.substring(instance.indexOf(":") + 1) + "\n");
