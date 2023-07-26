@@ -1,4 +1,4 @@
-package org.example.constants;
+package org.example.gradle.constants;
 
 public class Constants {
     public static final String INPUT_FILE_PATH1 = "D:\\Programmer\\Projects\\ParseXML\\src\\main\\resources\\input1.xml";

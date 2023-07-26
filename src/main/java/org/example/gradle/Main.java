@@ -1,14 +1,10 @@
-package org.example;
+package org.example.gradle;
 
+import org.example.gradle.constants.Constants;
 import org.w3c.dom.*;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-
-import static org.example.constants.Constants.*;
+import javax.xml.parsers.*;
+import java.io.*;
+import java.util.*;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
@@ -21,13 +17,13 @@ public class Main {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             // Parse the first input file and store it in a new Document object.
-            Document document1 = builder.parse(new File(INPUT_FILE_PATH1));
+            Document document1 = builder.parse(new File(Constants.INPUT_FILE_PATH1));
             // Parse the second input file and store it in another new Document object.
-            Document document2 = builder.parse(new File(INPUT_FILE_PATH2));
+            Document document2 = builder.parse(new File(Constants.INPUT_FILE_PATH2));
             // Create a new FileWriter object for the first output file.
-            writer1 = new FileWriter(OUTPUT_FILE_PATH1);
+            writer1 = new FileWriter(Constants.OUTPUT_FILE_PATH1);
             // Create another new FileWriter object for the second output file.
-            writer2 = new FileWriter(OUTPUT_FILE_PATH2);
+            writer2 = new FileWriter(Constants.OUTPUT_FILE_PATH2);
             // Declare an array of tag names.
             String[] tagNames = {"CONNECTOR", "INSTANCE", "GROUP"};
             for (String tagName : tagNames) {
@@ -52,6 +48,8 @@ public class Main {
 
     public static void writeAttributes(Document document, FileWriter writer, String tagName) throws Exception {
         NodeList nodeList = document.getElementsByTagName(tagName);
+        List<String> groups = new ArrayList<>();
+
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
             if (node.getNodeType() == Node.ELEMENT_NODE) {
@@ -82,7 +80,7 @@ public class Main {
                         String expression = element.getAttribute("EXPRESSION");
                         String order = element.getAttribute("ORDER");
                         String type = element.getAttribute("TYPE");
-                        writer.write(":group:name=" + name + ", expression=" + expression + ", order=" + order + ", type=" + type + "\n");
+                        groups.add(order + ":group:name=" + name + ", expression=" + expression + ", order=" + order + ", type=" + type);
                         break;
                     }
                     default:
@@ -91,6 +89,11 @@ public class Main {
                 }
                 }
             }
+        groups.sort(Comparator.comparing(s -> Integer.parseInt(s.split(":")[0])));
+        for (String group : groups) {
+            writer.write(group.substring(group.indexOf(":") + 1) + "\n");
         }
+        }
+
     }
 
