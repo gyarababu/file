@@ -5,6 +5,7 @@ import org.w3c.dom.*;
 import javax.xml.parsers.*;
 import java.io.*;
 import java.util.*;
+import java.util.stream.Stream;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
@@ -127,18 +128,15 @@ public class Main {
                 }
                 }
             }
-        connectors.sort(Comparator.comparing(s -> Integer.parseInt(s.split(":")[0])));
-        for (String connector : connectors) {
-            writer.write(connector.substring(connector.indexOf(":") + 1) + "\n");
-        }
-        instances.sort(Comparator.comparing(s -> Integer.parseInt(s.split(":")[0])));
-        for (String instance : instances) {
-            writer.write(instance.substring(instance.indexOf(":") + 1) + "\n");
-        }
-        groups.sort(Comparator.comparing(s -> Integer.parseInt(s.split(":")[0])));
-        for (String group : groups) {
-            writer.write(group.substring(group.indexOf(":") + 1) + "\n");
-        }
+        Stream.concat(Stream.concat(connectors.stream(), instances.stream()), groups.stream())
+                .sorted(Comparator.comparing(s -> Integer.parseInt(s.split(":")[0])))
+                .forEach(group -> {
+                    try {
+                        writer.write(group.substring(group.indexOf(":") + 1) + "\n");
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
         }
 
     }
