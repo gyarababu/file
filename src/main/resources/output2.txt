@@ -83,9 +83,9 @@
 :instance:Name=EMPLOYEES, type=SOURCE
 :instance:Name=SQ_EMPLOYEES, type=TRANSFORMATION
 :instance:Name=trans_ROUTER_EMPLOYEES_BY_JOB_ID, type=TRANSFORMATION
-:group:name=INPUT, expression=, order=1, type=INPUT
-:group:name=JOB_ID_MGR, expression=INSTR(JOB_ID,'MGR')!=0, order=2, type=OUTPUT
-:group:name=DEFAULT1, expression=, order=6, type=OUTPUT/DEFAULT
-:group:name=JOB_ID_REP, expression=INSTR(JOB_ID,'REP')!=0, order=3, type=OUTPUT
-:group:name=JOB_ID_CLERK, expression=INSTR(JOB_ID,'CLERK')!=0, order=4, type=OUTPUT
-:group:name=JOB_ID_ACCOUNT, expression=INSTR(JOB_ID,'ACCOUNT')!=0, order=5, type=OUTPUT
+group:name=INPUT, expression=, order=1, type=INPUT
+group:name=JOB_ID_MGR, expression=INSTR(JOB_ID,'MGR')!=0, order=2, type=OUTPUT
+group:name=JOB_ID_REP, expression=INSTR(JOB_ID,'REP')!=0, order=3, type=OUTPUT
+group:name=JOB_ID_CLERK, expression=INSTR(JOB_ID,'CLERK')!=0, order=4, type=OUTPUT
+group:name=JOB_ID_ACCOUNT, expression=INSTR(JOB_ID,'ACCOUNT')!=0, order=5, type=OUTPUT
+group:name=DEFAULT1, expression=, order=6, type=OUTPUT/DEFAULT
