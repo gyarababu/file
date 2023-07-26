@@ -48,6 +48,7 @@ public class Main {
 
     public static void writeAttributes(Document document, FileWriter writer, String tagName) throws Exception {
         NodeList nodeList = document.getElementsByTagName(tagName);
+        List<String> instances = new ArrayList<>();
         List<String> groups = new ArrayList<>();
 
         for (int i = 0; i < nodeList.getLength(); i++) {
@@ -72,7 +73,22 @@ public class Main {
                     case "INSTANCE": {
                         String name = element.getAttribute("NAME");
                         String type = element.getAttribute("TYPE");
-                        writer.write(":instance:Name=" + name + ", type=" + type + "\n");
+                        int typeOrder;
+                        switch (type) {
+                            case "SOURCE":
+                                typeOrder = 1;
+                                break;
+                            case "TRANSFORMATION":
+                                typeOrder = 2;
+                                break;
+                            case "TARGET":
+                                typeOrder = 3;
+                                break;
+                            default:
+                                typeOrder = 4;
+                                break;
+                        }
+                        instances.add(typeOrder + ":instance:Name=" + name + ", type=" + type);
                         break;
                     }
                     case "GROUP": {
@@ -89,6 +105,10 @@ public class Main {
                 }
                 }
             }
+        instances.sort(Comparator.comparing(s -> Integer.parseInt(s.split(":")[0])));
+        for (String instance : instances) {
+            writer.write(instance.substring(instance.indexOf(":") + 1) + "\n");
+        }
         groups.sort(Comparator.comparing(s -> Integer.parseInt(s.split(":")[0])));
         for (String group : groups) {
             writer.write(group.substring(group.indexOf(":") + 1) + "\n");

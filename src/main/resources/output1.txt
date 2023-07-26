@@ -42,8 +42,8 @@
 :connector:fromInstance=SQ_EMPLOYEES, fromField=COMMISSION_PCT, toInstance=EMPLOYEE_ID_FILTER, toField=COMMISSION_PCT
 :connector:fromInstance=SQ_EMPLOYEES, fromField=MANAGER_ID, toInstance=EMPLOYEE_ID_FILTER, toField=MANAGER_ID
 :connector:fromInstance=SQ_EMPLOYEES, fromField=DEPARTMENT_ID, toInstance=EMPLOYEE_ID_FILTER, toField=DEPARTMENT_ID
-:instance:Name=T_EMPLOYEES, type=TARGET
-:instance:Name=EXP_EMPLOYEE, type=TRANSFORMATION
-:instance:Name=EMPLOYEES, type=SOURCE
-:instance:Name=SQ_EMPLOYEES, type=TRANSFORMATION
-:instance:Name=EMPLOYEE_ID_FILTER, type=TRANSFORMATION
+instance:Name=EMPLOYEES, type=SOURCE
+instance:Name=EXP_EMPLOYEE, type=TRANSFORMATION
+instance:Name=SQ_EMPLOYEES, type=TRANSFORMATION
+instance:Name=EMPLOYEE_ID_FILTER, type=TRANSFORMATION
+instance:Name=T_EMPLOYEES, type=TARGET
