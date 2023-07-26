@@ -1,0 +1,49 @@
+:connector:fromInstance=EXP_EMPLOYEE, fromField=O_EMAIL, toInstance=T_EMPLOYEES, toField=EMAIL
+:connector:fromInstance=EXP_EMPLOYEE, fromField=O_LAST_NAME, toInstance=T_EMPLOYEES, toField=LAST_NAME
+:connector:fromInstance=EXP_EMPLOYEE, fromField=O_FIRST_NAME, toInstance=T_EMPLOYEES, toField=FIRST_NAME
+:connector:fromInstance=EXP_EMPLOYEE, fromField=EMPLOYEE_ID, toInstance=T_EMPLOYEES, toField=EMPLOYEE_ID
+:connector:fromInstance=EXP_EMPLOYEE, fromField=PHONE_NUMBER, toInstance=T_EMPLOYEES, toField=PHONE_NUMBER
+:connector:fromInstance=EXP_EMPLOYEE, fromField=HIRE_DATE, toInstance=T_EMPLOYEES, toField=HIRE_DATE
+:connector:fromInstance=EXP_EMPLOYEE, fromField=JOB_ID, toInstance=T_EMPLOYEES, toField=JOB_ID
+:connector:fromInstance=EXP_EMPLOYEE, fromField=SALARY, toInstance=T_EMPLOYEES, toField=SALARY
+:connector:fromInstance=EXP_EMPLOYEE, fromField=COMMISSION_PCT, toInstance=T_EMPLOYEES, toField=COMMISSION_PCT
+:connector:fromInstance=EXP_EMPLOYEE, fromField=MANAGER_ID, toInstance=T_EMPLOYEES, toField=MANAGER_ID
+:connector:fromInstance=EXP_EMPLOYEE, fromField=DEPARTMENT_ID, toInstance=T_EMPLOYEES, toField=DEPARTMENT_ID
+:connector:fromInstance=EMPLOYEE_ID_FILTER, fromField=EMPLOYEE_ID, toInstance=EXP_EMPLOYEE, toField=EMPLOYEE_ID
+:connector:fromInstance=EMPLOYEE_ID_FILTER, fromField=FIRST_NAME, toInstance=EXP_EMPLOYEE, toField=FIRST_NAME
+:connector:fromInstance=EMPLOYEE_ID_FILTER, fromField=LAST_NAME, toInstance=EXP_EMPLOYEE, toField=LAST_NAME
+:connector:fromInstance=EMPLOYEE_ID_FILTER, fromField=EMAIL, toInstance=EXP_EMPLOYEE, toField=EMAIL
+:connector:fromInstance=EMPLOYEE_ID_FILTER, fromField=PHONE_NUMBER, toInstance=EXP_EMPLOYEE, toField=PHONE_NUMBER
+:connector:fromInstance=EMPLOYEE_ID_FILTER, fromField=HIRE_DATE, toInstance=EXP_EMPLOYEE, toField=HIRE_DATE
+:connector:fromInstance=EMPLOYEE_ID_FILTER, fromField=JOB_ID, toInstance=EXP_EMPLOYEE, toField=JOB_ID
+:connector:fromInstance=EMPLOYEE_ID_FILTER, fromField=SALARY, toInstance=EXP_EMPLOYEE, toField=SALARY
+:connector:fromInstance=EMPLOYEE_ID_FILTER, fromField=COMMISSION_PCT, toInstance=EXP_EMPLOYEE, toField=COMMISSION_PCT
+:connector:fromInstance=EMPLOYEE_ID_FILTER, fromField=MANAGER_ID, toInstance=EXP_EMPLOYEE, toField=MANAGER_ID
+:connector:fromInstance=EMPLOYEE_ID_FILTER, fromField=DEPARTMENT_ID, toInstance=EXP_EMPLOYEE, toField=DEPARTMENT_ID
+:connector:fromInstance=EMPLOYEES, fromField=EMPLOYEE_ID, toInstance=SQ_EMPLOYEES, toField=EMPLOYEE_ID
+:connector:fromInstance=EMPLOYEES, fromField=FIRST_NAME, toInstance=SQ_EMPLOYEES, toField=FIRST_NAME
+:connector:fromInstance=EMPLOYEES, fromField=LAST_NAME, toInstance=SQ_EMPLOYEES, toField=LAST_NAME
+:connector:fromInstance=EMPLOYEES, fromField=EMAIL, toInstance=SQ_EMPLOYEES, toField=EMAIL
+:connector:fromInstance=EMPLOYEES, fromField=PHONE_NUMBER, toInstance=SQ_EMPLOYEES, toField=PHONE_NUMBER
+:connector:fromInstance=EMPLOYEES, fromField=HIRE_DATE, toInstance=SQ_EMPLOYEES, toField=HIRE_DATE
+:connector:fromInstance=EMPLOYEES, fromField=JOB_ID, toInstance=SQ_EMPLOYEES, toField=JOB_ID
+:connector:fromInstance=EMPLOYEES, fromField=SALARY, toInstance=SQ_EMPLOYEES, toField=SALARY
+:connector:fromInstance=EMPLOYEES, fromField=COMMISSION_PCT, toInstance=SQ_EMPLOYEES, toField=COMMISSION_PCT
+:connector:fromInstance=EMPLOYEES, fromField=MANAGER_ID, toInstance=SQ_EMPLOYEES, toField=MANAGER_ID
+:connector:fromInstance=EMPLOYEES, fromField=DEPARTMENT_ID, toInstance=SQ_EMPLOYEES, toField=DEPARTMENT_ID
+:connector:fromInstance=SQ_EMPLOYEES, fromField=EMPLOYEE_ID, toInstance=EMPLOYEE_ID_FILTER, toField=EMPLOYEE_ID
+:connector:fromInstance=SQ_EMPLOYEES, fromField=FIRST_NAME, toInstance=EMPLOYEE_ID_FILTER, toField=FIRST_NAME
+:connector:fromInstance=SQ_EMPLOYEES, fromField=LAST_NAME, toInstance=EMPLOYEE_ID_FILTER, toField=LAST_NAME
+:connector:fromInstance=SQ_EMPLOYEES, fromField=EMAIL, toInstance=EMPLOYEE_ID_FILTER, toField=EMAIL
+:connector:fromInstance=SQ_EMPLOYEES, fromField=PHONE_NUMBER, toInstance=EMPLOYEE_ID_FILTER, toField=PHONE_NUMBER
+:connector:fromInstance=SQ_EMPLOYEES, fromField=HIRE_DATE, toInstance=EMPLOYEE_ID_FILTER, toField=HIRE_DATE
+:connector:fromInstance=SQ_EMPLOYEES, fromField=JOB_ID, toInstance=EMPLOYEE_ID_FILTER, toField=JOB_ID
+:connector:fromInstance=SQ_EMPLOYEES, fromField=SALARY, toInstance=EMPLOYEE_ID_FILTER, toField=SALARY
+:connector:fromInstance=SQ_EMPLOYEES, fromField=COMMISSION_PCT, toInstance=EMPLOYEE_ID_FILTER, toField=COMMISSION_PCT
+:connector:fromInstance=SQ_EMPLOYEES, fromField=MANAGER_ID, toInstance=EMPLOYEE_ID_FILTER, toField=MANAGER_ID
+:connector:fromInstance=SQ_EMPLOYEES, fromField=DEPARTMENT_ID, toInstance=EMPLOYEE_ID_FILTER, toField=DEPARTMENT_ID
+:instance:Name=T_EMPLOYEES, type=TARGET
+:instance:Name=EXP_EMPLOYEE, type=TRANSFORMATION
+:instance:Name=EMPLOYEES, type=SOURCE
+:instance:Name=SQ_EMPLOYEES, type=TRANSFORMATION
+:instance:Name=EMPLOYEE_ID_FILTER, type=TRANSFORMATION
